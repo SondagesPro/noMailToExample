@@ -31,6 +31,12 @@ class noMailToExample extends \ls\pluginmanager\PluginBase
     public function beforeTokenEmail()
     {
         $emailTos=$this->event->get("to");
+        if(empty($emailTos)) {
+            return;
+        }
+        if(is_string($emailTos)) {
+            $emailTos=array($emailTos);
+        }
         /* @var string[] no example.(org|com) from the list */
         $cleanedEmailTos=array();
         foreach($emailTos as $emailTo){
