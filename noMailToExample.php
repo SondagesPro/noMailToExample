@@ -7,14 +7,14 @@
  * @author Denis Chenu <denis@sondages.pro>
  * @copyright 2016 Denis Chenu <http://www.sondages.pro>
  * @license MIT
- * @version 0.0.2
+ * @version 1.0.0
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * The MIT License
  */
-class noMailToExample extends \ls\pluginmanager\PluginBase
+class noMailToExample extends PluginBase
 {
     static protected $description = 'Don\t send email to example.(com|org)';
     static protected $name = 'noMailToExample';
@@ -48,6 +48,7 @@ class noMailToExample extends \ls\pluginmanager\PluginBase
             /* @var string only domain from email */
             $domainName = strtolower(substr(strrchr($emailOnly, "@"), 1));
             if($domainName=='example.com' || $domainName=='example.org'){
+                /* temporary set send to false : deactivate sending email on all emails */
                 $this->event->set("send",false);
             }else{
                 $cleanedEmailTos[]=$emailTo;
